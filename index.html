@@ -45,7 +45,7 @@
                 <!-- Emmet/shortcut: div.withdraw -->
                 <div class="withdraw status">
                     <h5>Withdraw</h5>
-                    <h2>$ <span id = "currentWithdraw">00</span></h2>
+                    <h2>$ <span id="currentWithdraw">00</span></h2>
                 </div>
             </div>
 
@@ -100,22 +100,26 @@
         //deposit button event handler
         const depositBtn = document.getElementById("addDeposit");
         depositBtn.addEventListener("click", function () {
-
             const depositNumber = getInputNumber("depositAmount");
 
-            updateSpanText("currentDeposit", depositNumber);
-            updateSpanText("currentBalance", depositNumber);
+            if (depositNumber < 0) {
+                alert("Deposit number can not be negative.");
+            }
+            else {
+                updateSpanText("currentDeposit", depositNumber);
+                updateSpanText("currentBalance", depositNumber);
 
-            document.getElementById("depositAmount").value = "";
+                document.getElementById("depositAmount").value = "";
+            }
         })
 
         // Withdraw button event handler
         const withdrawBtn = document.getElementById("addWithdraw");
         withdrawBtn.addEventListener("click", function () {
-        const withdrawNumber = getInputNumber("withdrawAmount");
+            const withdrawNumber = getInputNumber("withdrawAmount");
 
-            updateSpanText("currentWithdraw", withdrawNumber); 
-            updateSpanText("currentBalance", -1*withdrawNumber); 
+            updateSpanText("currentWithdraw", withdrawNumber);
+            updateSpanText("currentBalance", -1 * withdrawNumber);
 
             document.getElementById("withdrawAmount").value = "";
         })
